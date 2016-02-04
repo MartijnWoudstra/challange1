@@ -5,6 +5,10 @@ import java.util.HashMap;
 
 public class MyProxy extends PrivacyProxy {
 
+	
+	private String[] blockList = {"analytics", "ads", "advertisement"};
+	
+	
     //////////////////////////////////////////////////////////////////////////
     //
     // Enhance your proxy by implementing the following three methods:
@@ -59,6 +63,7 @@ public class MyProxy extends PrivacyProxy {
 /*
         requestHeaders.put("Niceness","high");
 */
+
         // return the (manipulated) headers, or
         return requestHeaders;
 
@@ -74,8 +79,7 @@ public class MyProxy extends PrivacyProxy {
     // For your convenience, the response headers are also available as a HashMap called responseHeaders , but you can't modify it.
         //log("Response: "+httpresponse);
 
-        // if you want to (safely, i.e., without binary garbage) print the entire response, uncomment the following:
-
+        // if you want to (safely, i.e., without binary garbage) print the entire response, uncomment the following
         String htmlCode = null;
         if (responseHeaders.containsKey("Content-Type") && responseHeaders.get("Content-Type").startsWith("text/html")) {
             htmlCode = new String(originalBytes);
@@ -88,11 +92,10 @@ public class MyProxy extends PrivacyProxy {
         return htmlCode == null ? originalBytes : htmlCode.getBytes();
 
 
-
         // if you want to modify the response, you can either modify the byte array directly,
         // or first convert it to a string and then modify that, _if_ you know for sure the response is in text form
         // (otherwise, a string doesn't make sense).
-/*
+        /*
         if (responseHeaders.containsKey("Content-Type") && responseHeaders.get("Content-Type").startsWith("text/html")) {
              String s = new String(originalBytes);
              String s2 = s.replaceAll("headers", "");
@@ -101,8 +104,7 @@ public class MyProxy extends PrivacyProxy {
              //responseLength = s2.length();
              log("L: "+alteredBytes.length);
              return alteredBytes;
-        }
-*/
+        }*/
         // return the original, unmodified array:
     }
 
