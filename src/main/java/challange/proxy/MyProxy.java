@@ -21,6 +21,8 @@ public class MyProxy extends PrivacyProxy {
 
         // let's simply print the requested URL, for a start that's enough:
         log("Request for: " + url);
+        if(url.contains("syndication"))
+            return null;
 
         // if we want to print all the request headers , use the below code:
         // it does a for-loop over all headers
@@ -28,7 +30,7 @@ public class MyProxy extends PrivacyProxy {
         for (String header : requestHeaders.keySet()) {
             // within the for loop, the variable  header  contains the name of the header
             // and you can ask for the contents of that header using requestHeaders.get() .
-            log("  REQ: " + header + ": " + requestHeaders.get(header));
+            //log("  REQ: " + header + ": " + requestHeaders.get(header));
         }
 
         // example code to do something if a certain requestheader is present:
